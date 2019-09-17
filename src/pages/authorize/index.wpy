@@ -22,20 +22,23 @@
       navigationBarTitleText: '授权'
     },
     data: {
+
     },
     methods: {
       authLogin() {
         wx.login({
           success: (res) => {
-            console.log('.......login success.........');
-            // if(res.code){
-            //     wx.navigateBack({
-            //         delta: 1
-            //     });
-            //
-            // }else{
-            //
-            // }
+            console.log('.......login success.........', res);
+            if (res.code) {
+              wx.showToast({
+                title: '授权成功',
+                icon: 'success',
+                duration: 2000
+              });
+              wx.navigateBack({
+                delta: 1
+              });
+            }
           },
           fail: (res) => {
             console.log('.......login fail.........');
