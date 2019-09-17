@@ -1,0 +1,15 @@
+node_modules
+dist
+.DS_Store
+### Node template
+# Logs
+logs
+*.log
+package-*.json
+
+# Dependency directories
+node_modules/
+
+weapp/
+
+*.wpy___jb_tmp___

@@ -1,0 +1,74 @@
+<style lang="less">
+
+</style>
+
+<template>
+  <view>
+    <view class="page__hd">
+        <view class="page__title">ActionSheet</view>
+        <view class="page__desc">{{userInfo.nickName}}</view>
+    </view>
+    <view class="page__bd">
+
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from '@wepy/core';
+  import { mapState } from '@wepy/x';
+  import store from '../store';
+
+  wepy.page({
+    store,
+    config: {
+      navigationBarTitleText: 'test'
+    },
+
+    data: {
+      userInfo: {
+        nickName: '加载中...'
+      }
+    },
+
+    computed: {
+      ...mapState([ 'counter' ])
+    },
+
+    methods: {
+    },
+
+    created () {
+      // wx.getUserInfo({
+      //   success (res) {
+      //     self.userInfo = res.userInfo;
+      //   },
+      //   fail: (res) => {
+      //     console.log('.......getUserInfo fail.........');
+      //     // wx.showModal({
+      //     //     title: '警告',
+      //     //     content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
+      //     //     showCancel: false,
+      //     //     confirmText: '返回授权',
+      //     //     success: function (res) {
+      //     //         if (res.confirm) {
+      //     //             console.log('用户点击了“返回授权”')
+      //     //         }
+      //     //     }
+      //     // });
+      //     wx.reLaunch({
+      //       url: './authorize/index',
+      //     });
+      //   }
+      // });
+    }
+  });
+</script>
+<config>
+{
+    navigationBarTitleText: '小书虫',
+    usingComponents: {
+      layout: '../components/layout',
+    }
+}
+</config>
