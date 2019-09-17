@@ -21,9 +21,6 @@
 
   wepy.page({
     store,
-    config: {
-      navigationBarTitleText: 'test'
-    },
 
     data: {
       userInfo: {
@@ -39,36 +36,39 @@
     },
 
     created () {
-      // wx.getUserInfo({
-      //   success (res) {
-      //     self.userInfo = res.userInfo;
-      //   },
-      //   fail: (res) => {
-      //     console.log('.......getUserInfo fail.........');
-      //     // wx.showModal({
-      //     //     title: '警告',
-      //     //     content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
-      //     //     showCancel: false,
-      //     //     confirmText: '返回授权',
-      //     //     success: function (res) {
-      //     //         if (res.confirm) {
-      //     //             console.log('用户点击了“返回授权”')
-      //     //         }
-      //     //     }
-      //     // });
-      //     wx.reLaunch({
-      //       url: './authorize/index',
-      //     });
-      //   }
-      // });
+        // wx.checkSession({
+        //     success () {
+        //         //session_key 未过期，并且在本生命周期一直有效
+        //     },
+        //     fail () {
+        //         // session_key 已经失效，需要重新执行登录流程
+        //         wx.login() //重新登录
+        //     }
+        // })
+      // const self = this;
+      wx.getUserInfo({
+        success: (res) => {
+          console.log('.......getUserInfo success.........');
+          // if (res.userInfo) {
+          //     self.userInfo = res.userInfo;
+          // } else {
+          //
+          // }
+        },
+        fail: (res) => {
+          console.log('.......getUserInfo fail.........');
+          wx.reLaunch({
+            url: './authorize/index',
+          });
+        }
+      });
     }
   });
 </script>
 <config>
 {
-    navigationBarTitleText: '小书虫',
     usingComponents: {
-      layout: '../components/layout',
+
     }
 }
 </config>

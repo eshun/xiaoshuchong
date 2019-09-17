@@ -72,21 +72,25 @@ wepy.app({
       {
         pagePath: 'pages/index',
         iconPath:'./images/pic_160.png',
+        selectedIconPath:'./images/pic_160.png',
         text: '小书虫'
       },
       {
         pagePath: 'pages/index',
         iconPath:'./images/pic_160.png',
+        selectedIconPath:'./images/pic_160.png',
         text: '班级圈'
       },
       {
         pagePath: 'pages/index',
         iconPath:'./images/pic_160.png',
+        selectedIconPath:'./images/pic_160.png',
         text: '发现'
       },
       {
         pagePath: 'pages/index',
         iconPath:'./images/pic_160.png',
+        selectedIconPath:'./images/pic_160.png',
         text: '我'
       }
     ]
