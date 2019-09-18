@@ -5,7 +5,7 @@ const i18n = {
   install: function install (wepy, options) {
     wepy.$t = function (key, ...values) {
       // 逻辑...
-      console.log(this,wepy);
+      console.log('$t',key,this,wepy);
     };
 
     wepy.mixin({

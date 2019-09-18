@@ -37,6 +37,7 @@
 
     created () {
         console.log('created', wepy.$t('name'));
+        console.log('created', t('name'));
       wx.checkSession({
         success (res) {
           console.log('.......checkSession success.........',res);
