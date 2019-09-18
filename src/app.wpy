@@ -39,9 +39,11 @@ page{
 import wepy from '@wepy/core';
 import vuex from '@wepy/x';
 import promisify from '@wepy/use-promisify';
+import i18n from './mixins/i18n';
 
 wepy.use(vuex);
 wepy.use(promisify);
+wepy.use(i18n);
 
 wepy.app({
   globalData: {

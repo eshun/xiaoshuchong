@@ -1,18 +1,35 @@
-import VueI18n from 'vue-i18n';
 
-function wepyInstall (wepy) {
-  VueI18n.install(wepy);
+import I18n from '../i18n/index';
 
-  wepy.mixin({
-    created: function () {
-      let computed = this.$options.computed;
-      for (let k in computed) {
-        if (computed[k].vuex) {
-          this.$watch(k, function () {
-            this._computedWatchers[k].evaluate();
-          }, { deep: true });
+const i18n = {
+  install: function install (wepy, options) {
+    wepy.$t = function (key, ...values) {
+      // 逻辑...
+      console.log(this,wepy);
+    };
+
+    wepy.mixin({
+      data: {
+        locale: 'zh-cn',
+        localeMessages: {},
+        messages: {},
+      },
+      created: function () {
+        const that = this;
+        if (options && options.local) {
+          that.locale = options.local;
         }
+        if (I18n && typeof I18n === 'object') {
+          that.messages = Object.assign({}, I18n);
+        }
+
+        that.localeMessages = that.messages[that.locale];
+      },
+      methods: {
+
       }
-    }
-  });
-}
+    });
+  }
+};
+
+module.exports = i18n;

@@ -19,8 +19,7 @@
     "@wepy/core": "^2.0.0-alpha.9",
     "@wepy/use-promisify": "^2.0.0",
     "@wepy/x": "^2.0.2",
-    "miniprogram-slide-view": "0.0.3",
-    "vue-i18n": "^8.14.1"
+    "miniprogram-slide-view": "0.0.3"
   },
   "devDependencies": {
     "@wepy/cli": "^2.0.0-alpha.10",
