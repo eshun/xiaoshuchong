@@ -3,9 +3,11 @@ import I18n from '../i18n/index';
 
 const i18n = {
   install: function install (wepy, options) {
-    wepy.$t = function (key, ...values) {
-      // 逻辑...
-      console.log('$t',key,this,wepy);
+    wepy.$t = function(key, ...values) {
+      console.log('mixin fun $t ' + key);
+      if (this.$t) {
+        return this.$t(key, ...values);
+      }
     };
 
     wepy.mixin({
@@ -14,7 +16,7 @@ const i18n = {
         localeMessages: {},
         messages: {},
       },
-      created: function () {
+      created: function() {
         const that = this;
         if (options && options.local) {
           that.locale = options.local;
@@ -26,7 +28,15 @@ const i18n = {
         that.localeMessages = that.messages[that.locale];
       },
       methods: {
-
+        $t(key, ...values) {
+          console.log('mixin method $t ' + key);
+          if (this.localeMessages) {
+            if (key) {
+              return this.localeMessages[key];
+            }
+          }
+          return '';
+        }
       }
     });
   }

@@ -47,14 +47,11 @@ wepy.use(i18n);
 
 wepy.app({
   globalData: {
-    userInfo: null
+    localeMessages: null
   },
 
   onLaunch() {
   },
-
-  methods: {
-  }
 });
 </script>
 <config>

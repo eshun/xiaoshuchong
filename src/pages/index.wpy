@@ -1,12 +1,20 @@
 <style lang="less">
 
 </style>
-
+<wxs module="filter" lang="babel">
+  const format = (key) => {
+    console.log(this);
+    return key;
+  }
+  module.exports.format = format;
+</wxs>
 <template>
   <view>
     <view class="page__hd">
-        <view class="page__title">ActionSheet</view>
+
+        <view class="page__title">{{title}}</view>
         <view class="page__desc">{{userInfo.nickName}}</view>
+      <view class="page__desc">{{filter.format("ttt")}}</view>
     </view>
     <view class="page__bd">
 
@@ -23,27 +31,29 @@
     store,
 
     data: {
+      title: '',
       userInfo: {
-        nickName: '加载中...'
+        nickName: '加载中...',
       }
     },
 
     computed: {
-      ...mapState([ 'counter' ])
+      ...mapState(['counter'])
     },
 
     methods: {
+
     },
 
     created () {
-        console.log('created', wepy.$t('name'));
-        console.log('created', t('name'));
+      this.title = this.$t('app');
+
       wx.checkSession({
-        success (res) {
-          console.log('.......checkSession success.........',res);
+        success(res) {
+          console.log('.......checkSession success.........', res);
         },
-        fail (res) {
-            // session_key 已经失效，需要重新执行登录流程
+        fail(res) {
+          // session_key 已经失效，需要重新执行登录流程
           console.log('.......checkSession fail.........');
           wx.reLaunch({
             url: './authorize/index',
