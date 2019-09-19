@@ -70,6 +70,9 @@ function login() {
   });
 }
 
+/**
+ * 获取微信用户信息
+ */
 function getUserInfo() {
   return new Promise(function (resolve, reject) {
     wx.getUserInfo({
