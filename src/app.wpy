@@ -72,9 +72,11 @@ wepy.app({
       }
     }).catch(() => {
       //this.$nextTick().then(function () {
-      wx.navigateTo({
-        url: './authorize/index',
-      });
+        setTimeout(() => {
+            wx.navigateTo({
+                url: './authorize/index',
+            });
+        });
       //});
     });
   },
