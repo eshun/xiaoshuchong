@@ -40,18 +40,6 @@
     },
 
     created () {
-      wx.checkSession({
-        success(res) {
-          console.log('.......checkSession success.........', res);
-        },
-        fail(res) {
-          // session_key 已经失效，需要重新执行登录流程
-          console.log('.......checkSession fail.........');
-          wx.reLaunch({
-            url: './authorize/index',
-          });
-        }
-      });
       // const self = this;
       // wx.getUserInfo({
       //   success: (res) => {

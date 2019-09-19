@@ -40,6 +40,7 @@ import wepy from '@wepy/core';
 import vuex from '@wepy/x';
 import promisify from '@wepy/use-promisify';
 import i18n from './mixins/i18n';
+import utils from './utils/index';
 
 wepy.use(vuex);
 wepy.use(promisify);
@@ -47,9 +48,35 @@ wepy.use(i18n);
 
 wepy.app({
   globalData: {
+    userInfo: {
+      nickName: 'Hi,游客',
+      avatarUrl: 'https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/20180727/150547696d798c.png'
+    },
+    token: '',
+    language: 'zh_CN',
   },
 
-  onLaunch() {
+  onLaunch(options) {
+    console.log('onLaunch options:', options);
+  },
+  onShow(options) {
+    console.log('onShow options:', options);
+    if (options.path) {
+        // options.query
+
+    }
+    utils.checkLogin().then(data => {
+      if (data && data.userInfo && data.token) {
+        this.globalData.userInfo = data.userInfo;
+        this.globalData.token = data.token;
+      }
+    }).catch(() => {
+      //this.$nextTick().then(function () {
+      wx.navigateTo({
+        url: './authorize/index',
+      });
+      //});
+    });
   },
 });
 </script>

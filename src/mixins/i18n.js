@@ -11,7 +11,7 @@ const i18n = {
 
     wepy.mixin({
       data: {
-        locale: 'zh-cn',
+        locale: 'zh_CN',
         localeMessages: {},
         messages: {},
       },

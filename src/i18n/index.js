@@ -1,6 +1,6 @@
 
-import zhCN from './locale/zh-cn';
+import zhCN from './locale/zh_CN';
 
 export default {
-  'zh-cn': zhCN
+  'zh_CN': zhCN
 };
