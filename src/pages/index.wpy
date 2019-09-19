@@ -1,20 +1,12 @@
 <style lang="less">
 
 </style>
-<wxs module="filter" lang="babel">
-  const format = (key) => {
-    console.log(this);
-    return key;
-  }
-  module.exports.format = format;
-</wxs>
+
 <template>
   <view>
     <view class="page__hd">
-
-        <view class="page__title">{{title}}</view>
+        <view class="page__title">{{funTitle}}</view>
         <view class="page__desc">{{userInfo.nickName}}</view>
-      <view class="page__desc">{{filter.format("ttt")}}</view>
     </view>
     <view class="page__bd">
 
@@ -31,14 +23,16 @@
     store,
 
     data: {
-      title: '',
       userInfo: {
         nickName: '加载中...',
       }
     },
 
     computed: {
-      ...mapState(['counter'])
+      ...mapState(['counter']),
+      funTitle() {
+        return this.$t('menu.me');
+      }
     },
 
     methods: {
@@ -46,8 +40,6 @@
     },
 
     created () {
-      this.title = this.$t('app');
-
       wx.checkSession({
         success(res) {
           console.log('.......checkSession success.........', res);
@@ -76,10 +68,3 @@
     }
   });
 </script>
-<config>
-{
-    usingComponents: {
-
-    }
-}
-</config>

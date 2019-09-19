@@ -47,7 +47,6 @@ wepy.use(i18n);
 
 wepy.app({
   globalData: {
-    localeMessages: null
   },
 
   onLaunch() {
