@@ -34,3 +34,8 @@ module.exports = {
     noPromiseAPI: ['createSelectorQuery']
   }
 };
+
+if (prod) {
+  // 压缩less
+  module.exports.compilers['less'] = {compress: true};
+}

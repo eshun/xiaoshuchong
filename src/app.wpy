@@ -47,15 +47,7 @@ wepy.use(promisify);
 wepy.use(i18n);
 
 wepy.app({
-  globalData: {
-    userInfo: {
-      nickName: 'Hi,游客',
-      avatarUrl: 'https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/20180727/150547696d798c.png'
-    },
-    token: '',
-    language: 'zh_CN',
-  },
-
+  globalData: {},
   onLaunch(options) {
     console.log('onLaunch options:', options);
   },
@@ -66,18 +58,15 @@ wepy.app({
 
     }
     utils.checkLogin().then(data => {
-      if (data && data.userInfo && data.token) {
-        this.globalData.userInfo = data.userInfo;
-        this.globalData.token = data.token;
-      }
+      //vuex.mapActions.
     }).catch(() => {
-      //this.$nextTick().then(function () {
-        setTimeout(() => {
-            wx.navigateTo({
-                url: './authorize/index',
-            });
-        });
-      //});
+      // this.$nextTick().then(function () {
+      //   setTimeout(() => {
+      //       wx.navigateTo({
+      //           url: './authorize/index',
+      //       });
+      //   });
+      // });
     });
   },
 });
@@ -86,15 +75,21 @@ wepy.app({
 {
   pages: [
     'pages/index',
+    'pages/user',
     'pages/authorize/index'
   ],
   window: {
+    backgroundColor: '#eaeaea',
     backgroundTextStyle: 'light',
-    navigationBarBackgroundColor: '#fff',
     navigationBarTitleText: '小书虫',
-    navigationBarTextStyle: 'black'
+    navigationBarTextStyle: 'white',
+    navigationBarBackgroundColor: '#049BFF'
   },
   tabBar: {
+    color: '#AEADAD',
+    selectedColor: '#049BFF',
+    backgroundColor: '#fff',
+    borderStyle: 'black',
     list: [
       {
         pagePath: 'pages/index',
@@ -115,7 +110,7 @@ wepy.app({
         text: '发现'
       },
       {
-        pagePath: 'pages/index',
+        pagePath: 'pages/user',
         iconPath:'./images/pic_160.png',
         selectedIconPath:'./images/pic_160.png',
         text: '我'

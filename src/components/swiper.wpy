@@ -1,0 +1,71 @@
+<style type="less">
+  swiper,.swiper{
+    width: 100%;
+  }
+
+  .swiper-image{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+  }
+</style>
+<template>
+  <swiper class="swiper" style="height:{{ style_height }}" autoplay="{{autoplay}}"
+          indicator-dots="{{indicatorDots}}"
+          indicator-color="{{indicatorColor}}"
+          indicator-active-color="{{indicatorActiveColor}}">
+    <block wx:for="{{list}}" wx:key="index">
+      <swiper-item>
+        <navigator wx:if="{{item.url}}" url="{{item.url}}">
+          <image src="{{item.image}}" style="height:{{style_height}}" class="swiper-image" mode="widthFix"/>
+        </navigator>
+        <view wx:else style="height:{{style_height}}">
+          <image src="{{item.image}}" style="height:{{style_height}}" class="swiper-image" mode="aspectFit"/>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+</template>
+<script>
+  import wepy from '@wepy/core';
+
+  wepy.component({
+    props: {
+      list: {
+        type: Object,
+        default: []
+      },
+      height: {
+        type: [String, Number],
+      },
+      dots: {
+        type: Boolean,
+        default: true
+      }
+    },
+
+    data: {
+      autoplay: true,
+      indicatorColor: 'rgba(255, 255, 255, 0.6)',
+      indicatorActiveColor: 'rgba(255, 255, 255, 1)'
+    },
+
+    computed: {
+      indicatorDots() {
+        return this.list.length > 1 && this.dots;
+      },
+      style_height() {
+        const h = this.height;
+        if (typeof h === 'number' || /^[\d|\\.]*$/.test(h)) {
+          return `${h}rpx`;
+        } else if (typeof h === 'string' && /\d+(r?px|em)$/.test(h)) {
+          return h;
+        } else {
+          return '240rpx';
+        }
+      }
+    },
+  });
+</script>

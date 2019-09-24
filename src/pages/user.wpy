@@ -1,0 +1,114 @@
+<style lang="less">
+
+  @userinfoHeight: 100rpx;
+  @userinfoSpace: 8rpx;
+  @uiColorGreen: #5cbaa7;
+
+  .page-user{
+
+    .userinfo{
+      padding: 20rpx 0;
+    }
+
+    .userinfo-avatar {
+      float: left;
+      width: @userinfoHeight;
+      height: @userinfoHeight;
+      border-radius: 50%;
+    }
+
+    // space + space
+    .userinfo-info {
+      float: left;
+      line-height: 1;
+      padding: @userinfoSpace 0;
+      margin-left: 3 * @userinfoSpace;
+    }
+
+    // text + space + text
+    .userinfo-nickname {
+      color: @uiColorGreen;
+      font-size: (@userinfoHeight - 4 * @userinfoSpace) * (16 / 30);
+      margin-bottom: 2 * @userinfoSpace;
+    }
+  }
+</style>
+<template>
+  <view class="page-user">
+    <view class="weui-panel">
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd userinfo clearfix">
+            <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
+            <view class="userinfo-info">
+              <view class="userinfo-nickname" @tap="authLogin">{{ userInfo.nickName }}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-panel">
+
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from '@wepy/core';
+  import { mapState, mapActions } from '@wepy/x';
+  import store from '../store';
+  import utils from '../utils/index';
+
+  wepy.page({
+    store,
+
+    data: {
+
+    },
+    computed: {
+      ...mapState(['userInfo']),
+    },
+    methods: {
+      ...mapActions([
+        'saveUserInfo'
+      ]),
+      authLogin() {
+        utils.login().then(res => {
+          if (res.code) {
+            // 不存在系统中则调用微信授权用户信息
+            utils.getUserInfo().then(data => {
+              // 将获取到的授权信息写入本地缓存和服务存储
+              const userInfo = data.userInfo;
+              if (userInfo) {
+                this.saveUserInfo({userInfo, token: ''});
+              }
+              utils.showSuccessToast('授权成功!');
+            }).catch(() => {
+              this.authFail();
+            });
+          }
+        }).catch(() => {
+          this.authFail();
+        });
+      },
+      authFail() {
+        wx.showModal({
+          title: '警告',
+          content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
+          showCancel: false,
+          confirmText: '返回授权',
+          success: function (res) {
+            if (res.confirm) {
+              utils.showErrorToast('您已禁止授权');
+            }
+          }
+        });
+      }
+    }
+  });
+</script>
+<config>
+  {
+    navigationBarTitleText: '我的',
+
+  }
+</config>

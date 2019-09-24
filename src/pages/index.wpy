@@ -3,56 +3,37 @@
 </style>
 
 <template>
-  <view>
-    <view class="page__hd">
-        <view class="page__title">{{funTitle}}</view>
-        <view class="page__desc">{{userInfo.nickName}}</view>
-    </view>
-    <view class="page__bd">
+  <view class="page-index">
+    <searchbar></searchbar>
+    <swiper :list.sync="swipers" height="280"></swiper>
 
-    </view>
   </view>
 </template>
 
 <script>
   import wepy from '@wepy/core';
-  import { mapState } from '@wepy/x';
-  import store from '../store';
 
   wepy.page({
-    store,
 
     data: {
-      userInfo: {
-        nickName: '加载中...',
-      }
+      swipers: [
+        // 占位图，防止请求错误无图显示
+        {image: '../images/swiper.png'}
+      ],
     },
 
-    computed: {
-      ...mapState(['counter']),
-      funTitle() {
-        return this.$t('menu.me');
-      }
-    },
+    computed: {},
 
-    methods: {
+    methods: {},
 
-    },
-
-    created () {
-      // const self = this;
-      // wx.getUserInfo({
-      //   success: (res) => {
-      //     console.log('.......getUserInfo success.........');
-      //     // if (res.userInfo) {
-      //     //     self.userInfo = res.userInfo;
-      //     // } else {
-      //     //
-      //     // }
-      //   },
-      //   fail: (res) => {
-      //   }
-      // });
-    }
+    created () {},
   });
 </script>
+<config>
+  {
+    usingComponents: {
+      searchbar: '../components/searchbar',
+      swiper: '../components/swiper',
+    }
+  }
+</config>

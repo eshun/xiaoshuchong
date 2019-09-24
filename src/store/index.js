@@ -1,28 +1,48 @@
 import Vuex from '@wepy/x';
+import untils from '../utils/index';
 
 export default new Vuex.Store({
   state: {
-    counter: 0
+    userInfo: {
+      nickName: 'Hi,游客',
+      avatarUrl: 'https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/20180727/150547696d798c.png'
+    },
+    token: '',
+    language: 'zh_CN'
+  },
+  getters: {
+
   },
   mutations: {
-    increment (state) {
-      state.counter++;
+    SETUSERAINFO(state, userInfo) {
+      state.userInfo = userInfo;
     },
-    decrement (state) {
-      state.counter--;
+    SETTOKEN(state, token) {
+      state.token = token;
     }
   },
   actions: {
-    increment ({ commit }) {
-      commit('increment');
+    init({commit}) {
+      const data = untils.getStorage();
+      if (data) {
+        if (data.userInfo) {
+          commit('SETUSERAINFO', data.userInfo);
+        }
+        if (data.token) {
+          commit('SETUSERAINFO', data.userInfo);
+        }
+      }
     },
-    decrement ({ commit }) {
-      commit('decrement');
-    },
-    incrementAsync ({ commit }) {
-      setTimeout(() => {
-        commit('increment');
-      }, 1000);
+    saveUserInfo({commit}, data) {
+      untils.saveStorage(data.userInfo, data.token);
+      if (data) {
+        if (data.userInfo) {
+          commit('SETUSERAINFO', data.userInfo);
+        }
+        if (data.token) {
+          commit('SETUSERAINFO', data.userInfo);
+        }
+      }
     }
   }
 });

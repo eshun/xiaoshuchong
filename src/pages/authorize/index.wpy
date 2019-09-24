@@ -22,38 +22,36 @@
     config: {
       navigationBarTitleText: '授权'
     },
-    data: {
-
-    },
+    data: {},
     methods: {
-        authLogin() {
-            utils.login().then(res => {
-                if (res.code) {
-                    // 通过code获取服务授权用户
+      authLogin() {
+        utils.login().then(res => {
+          if (res.code) {
+            // 通过code获取服务授权用户
 
-                    // 不存在系统中则调用微信授权用户信息
-                    utils.getUserInfo().then(data => {
-                        // 将获取到的授权信息写入本地缓存和服务存储
+            // 不存在系统中则调用微信授权用户信息
+            utils.getUserInfo().then(data => {
+              // 将获取到的授权信息写入本地缓存和服务存储
 
-                    });
-                    wx.navigateBack({
-                        delta: 1
-                    });
-                }
-            }).catch(() => {
-                wx.showModal({
-                    title: '警告',
-                    content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
-                    showCancel: false,
-                    confirmText: '返回授权',
-                    success: function (res) {
-                        if (res.confirm) {
-                            console.log('用户点击了“返回授权”');
-                        }
-                    }
-                });
             });
-        },
+            wx.navigateBack({
+              delta: 1
+            });
+          }
+        }).catch(() => {
+          wx.showModal({
+            title: '警告',
+            content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
+            showCancel: false,
+            confirmText: '返回授权',
+            success: function (res) {
+              if (res.confirm) {
+                console.log('用户点击了“返回授权”');
+              }
+            }
+          });
+        });
+      },
     }
   });
 </script>

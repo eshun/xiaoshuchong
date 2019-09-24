@@ -125,8 +125,10 @@ function clearStorage() {
   wx.removeStorageSync('token-' + appId);
 }
 
-function saveStorage(){
-
+function saveStorage(userInfo, token) {
+  const appId = getAppId();
+  wx.setStorageSync('userInfo-' + appId, userInfo);
+  wx.setStorageSync('token-' + appId, token);
 }
 
 function httpGet(url = '', { success = () => {}, fail = () => {}, complete = () => {} }) {
@@ -192,6 +194,7 @@ module.exports = {
   checkLogin,
   login,
   getUserInfo,
+  getStorage,
   saveStorage,
   httpGet,
   httpPost
