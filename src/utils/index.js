@@ -56,7 +56,6 @@ function login() {
   return new Promise(function (resolve, reject) {
     wx.login({
       success: function (res) {
-        console.log(res);
         if (res.code) {
           resolve(res);
         } else {
@@ -91,12 +90,16 @@ function getUserInfo() {
  */
 function checkLogin() {
   return new Promise(function (resolve, reject) {
-    checkSession().then(() => {
-      const data = getStorage();
-      if (data) {
-        resolve(data);
+    checkSession().then((res) => {
+      if (res) {
+        const data = getStorage();
+        if (data && data !== null) {
+          resolve(data);
+        } else {
+          reject(res);
+        }
       } else {
-        reject(null);
+        reject(res);
       }
     }).catch((err) => {
       clearStorage();
@@ -110,25 +113,34 @@ function checkLogin() {
  * @returns {{userInfo: *, token: *}|null}
  */
 function getStorage() {
-  const appId = getAppId();
-  const userInfo = wx.getStorageSync('userInfo-' + appId);
-  const token = wx.getStorageSync('token-' + appId);
-  if (userInfo && token) {
-    return {userInfo, token};
+  try {
+    const appId = getAppId();
+    const userInfo = wx.getStorageSync('userInfo-' + appId);
+    const token = wx.getStorageSync('token-' + appId);
+    if (userInfo || token) {
+      return {userInfo, token};
+    }
+  } catch (e) {
   }
   return null;
 }
 
 function clearStorage() {
-  const appId = getAppId();
-  wx.removeStorageSync('userInfo-' + appId);
-  wx.removeStorageSync('token-' + appId);
+  try {
+    const appId = getAppId();
+    wx.removeStorageSync('userInfo-' + appId);
+    wx.removeStorageSync('token-' + appId);
+  } catch (e) {
+  }
 }
 
 function saveStorage(userInfo, token) {
-  const appId = getAppId();
-  wx.setStorageSync('userInfo-' + appId, userInfo);
-  wx.setStorageSync('token-' + appId, token);
+  try {
+    const appId = getAppId();
+    wx.setStorageSync('userInfo-' + appId, userInfo);
+    wx.setStorageSync('token-' + appId, token);
+  } catch (e) {
+  }
 }
 
 function httpGet(url = '', { success = () => {}, fail = () => {}, complete = () => {} }) {

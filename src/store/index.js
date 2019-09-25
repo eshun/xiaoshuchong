@@ -19,8 +19,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    init({commit}) {
-      console.log('init');
+    initUserInfo({commit}) {
       utils.checkLogin().then(data => {
         if (data && data.userInfo) {
           commit('SETUSERAINFO', data.userInfo);
