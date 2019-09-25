@@ -69,6 +69,7 @@
     },
     methods: {
       ...mapActions([
+        'init',
         'saveUserInfo'
       ]),
       authLogin() {
@@ -103,6 +104,9 @@
           }
         });
       }
+    },
+    created() {
+      this.init();
     }
   });
 </script>

@@ -1,5 +1,5 @@
 import Vuex from '@wepy/x';
-import untils from '../utils/index';
+import utils from '../utils/index';
 
 export default new Vuex.Store({
   state: {
@@ -9,9 +9,6 @@ export default new Vuex.Store({
     },
     token: '',
     language: 'zh_CN'
-  },
-  getters: {
-
   },
   mutations: {
     SETUSERAINFO(state, userInfo) {
@@ -23,24 +20,24 @@ export default new Vuex.Store({
   },
   actions: {
     init({commit}) {
-      const data = untils.getStorage();
-      if (data) {
-        if (data.userInfo) {
+      console.log('init');
+      utils.checkLogin().then(data => {
+        if (data && data.userInfo) {
           commit('SETUSERAINFO', data.userInfo);
         }
-        if (data.token) {
-          commit('SETUSERAINFO', data.userInfo);
+        if (data && data.token) {
+          commit('SETTOKEN', data.token);
         }
-      }
+      });
     },
     saveUserInfo({commit}, data) {
-      untils.saveStorage(data.userInfo, data.token);
+      utils.saveStorage(data.userInfo, data.token);
       if (data) {
         if (data.userInfo) {
           commit('SETUSERAINFO', data.userInfo);
         }
         if (data.token) {
-          commit('SETUSERAINFO', data.userInfo);
+          commit('SETTOKEN', data.token);
         }
       }
     }
