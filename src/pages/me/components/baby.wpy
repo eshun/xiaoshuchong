@@ -2,6 +2,11 @@
   @import "../../../style/widget/weui-cell/weui-cell.less";
   @import "../../../style/widget/weui-cell/weui-access.less";
 
+  .weui-cell {
+    &:before {
+      display: none;
+    }
+  }
 </style>
 <template>
   <view class="weui-cells__title">我关注的宝贝</view>
@@ -21,6 +26,7 @@
 </template>
 <script>
   import wepy from '@wepy/core';
+  import { icon20 } from '../../../images/base64';
 
   wepy.component({
     props: {
@@ -28,7 +34,7 @@
     },
 
     data: {
-
+      icon: icon20
     },
 
     computed: {

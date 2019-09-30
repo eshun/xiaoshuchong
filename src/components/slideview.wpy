@@ -2,19 +2,20 @@
   @import "../style/base/fn.less";
   @import "../style/widget/weui-cell/weui-cell.less";
 
+  .weui-cell {
+    &:before {
+      display: none;
+    }
+    &:after {
+      .setBottomLine(@weuiCellBorderColor);
+      left: @weuiCellGapH;
+    }
+  }
+
   .weui-slideview{
     position: relative;
     overflow: hidden;
     display: flex;
-    &:before {
-      .setTopLine(@weuiCellBorderColor);
-      left: @weuiCellGapH;
-    }
-    &:first-child {
-      &:before {
-        display: none;
-      }
-    }
     .weui-slideview__left{
       height: 110rpx;
       width: 750rpx;
@@ -62,7 +63,7 @@
 <template>
   <slide-view class="weui-slideview" width="750" height="110" slide-width="200">
     <view class="weui-slideview__left" slot="left">
-      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <navigator url="" class="weui-cell" hover-class="weui-cell_active">
         <view class="weui-cell__hd">
           <image src="{{icon}}" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
         </view>
