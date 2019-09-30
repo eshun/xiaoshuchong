@@ -1,0 +1,30 @@
+<style lang="less">
+
+</style>
+<template>
+  <view class="page">
+    <view class="weui-msg">
+      <view class="weui-msg__icon-area">
+        <image src="{{img}}" style="width:64px; height: 64px;"></image>
+      </view>
+      <view class="weui-msg__text-area">
+        <view class="weui-msg__title">开发中，敬请期待!</view>
+        <view class="weui-msg__desc"></view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from '@wepy/core';
+
+  wepy.page({
+    config: {
+      navigationBarTitleText: '发现'
+    },
+    data: {
+      img: '../../images/icon_intro.png'
+    },
+    methods: {
+    }
+  });
+</script>

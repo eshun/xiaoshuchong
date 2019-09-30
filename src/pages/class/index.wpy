@@ -1,0 +1,100 @@
+<style lang="less">
+  @imgHeight: 100rpx;
+
+  .weui-cells {
+    width: 1700rpx;
+    height: 180rpx;
+    display: inline-block;
+
+    .class-cell {
+      float: left;
+
+      &:before {
+        display: none;
+      }
+
+      .class-cell-avatar {
+        width: @imgHeight;
+        height: @imgHeight;
+        border-radius: 10%;
+      }
+
+      .class-cell-info {
+        .class-cell-title {
+          text-align: center;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+</style>
+<template>
+  <view class="page">
+    <view class="weui-panel">
+      <scroll-view class="weui-cells" scroll-x="true">
+        <view class="weui-cell class-cell" @tap="">
+          <view class="weui-cell__bd clearfix">
+            <image class="class-cell-avatar" src="{{ icon }}" background-size="cover"/>
+            <view class="class-cell-info">
+              <view class="class-cell-title">新建</view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-cell class-cell" @tap="">
+          <view class="weui-cell__bd clearfix">
+            <image class="class-cell-avatar" src="{{ icon }}" background-size="cover"/>
+            <view class="class-cell-info">
+              <view class="class-cell-title">新建</view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-cell class-cell" @tap="">
+          <view class="weui-cell__bd clearfix">
+            <image class="class-cell-avatar" src="{{ icon }}" background-size="cover"/>
+            <view class="class-cell-info">
+              <view class="class-cell-title">新建</view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-cell class-cell" @tap="">
+          <view class="weui-cell__bd clearfix">
+            <image class="class-cell-avatar" src="{{ icon }}" background-size="cover"/>
+            <view class="class-cell-info">
+              <view class="class-cell-title">新建</view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-cell class-cell" @tap="">
+          <view class="weui-cell__bd clearfix">
+            <image class="class-cell-avatar" src="{{ icon }}" background-size="cover"/>
+            <view class="class-cell-info">
+              <view class="class-cell-title">新建</view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-cell class-cell" @tap="">
+          <view class="weui-cell__bd clearfix">
+            <image class="class-cell-avatar" src="{{ icon }}" background-size="cover"/>
+            <view class="class-cell-info">
+              <view class="class-cell-title">新建</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from '@wepy/core';
+
+  wepy.page({
+    config: {
+      navigationBarTitleText: '班级圈'
+    },
+    data: {
+      icon:'../../images/icon_nav_widget.png'
+    },
+    methods: {
+    }
+  });
+</script>

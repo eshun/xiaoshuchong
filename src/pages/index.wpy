@@ -3,7 +3,7 @@
 </style>
 
 <template>
-  <view class="page-index">
+  <view class="page">
     <searchbar></searchbar>
     <swiper :list.sync="swipers" height="280"></swiper>
 
