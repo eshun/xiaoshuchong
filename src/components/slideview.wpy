@@ -1,0 +1,27 @@
+<style type="less">
+
+</style>
+<template>
+
+</template>
+<script>
+  import wepy from '@wepy/core';
+
+  wepy.component({
+    props: {
+
+    },
+
+    data: {
+
+    },
+
+    computed: {
+
+    },
+
+    methods: {
+
+    },
+  });
+</script>

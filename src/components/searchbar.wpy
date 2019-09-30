@@ -1,4 +1,5 @@
-<style type="less">
+<style lang="less">
+  @import "../style/widget/weui-searchbar/weui-searchbar.less";
 
 </style>
 <template>

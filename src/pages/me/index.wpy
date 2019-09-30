@@ -4,10 +4,30 @@
   @userinfoSpace: 8rpx;
   @uiColorGreen: #5cbaa7;
 
-  .page-user{
+  .page-user {
 
-    .userinfo{
-      padding: 20rpx 0;
+    .weui-panel {
+      &:before {
+        border: 0;
+      }
+
+      &::after {
+        border: 0;
+      }
+
+      .weui-cells {
+        &:before {
+          border: 0;
+        }
+
+        &::after {
+          border: 0;
+        }
+      }
+    }
+
+    .userinfo {
+      padding: 20 rpx 0;
     }
 
     .userinfo-avatar {

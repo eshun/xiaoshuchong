@@ -1,62 +1,103 @@
 <style lang="less">
+  @import "../../../style/base/fn.less";
+  @import "../../../style/widget/weui-cell/weui-cell.less";
+  @import "../../../style/widget/weui-cell/weui-access.less";
 
-  .slide {
-    width: 640rpx;
+  .weui-slideview{
+    position: relative;
+    overflow: hidden;
     display: flex;
-    border: 1rpx solid #ccc;
-    font-size: 28rpx;
-    align-items: center;
-    box-sizing: border-box;
-    .left {
-      width: 750rpx;
-      padding: 20rpx;
+    &:before {
+      .setTopLine(@weuiCellBorderColor);
+      left: @weuiCellGapH;
     }
-    .right {
+    &:first-child {
+      &:before {
+        display: none;
+      }
+    }
+    .weui-slideview__left{
+      height: 110rpx;
+      width: 750rpx;
       display: flex;
-      .right-item {
-        padding: 20rpx 30rpx;
-        background-color: red;
-        color: #fff;
+      flex-direction: row;
+      .weui-cell {
+        width: 100%;
+      }
+    }
+    .weui-slideview__right{
+      height: 110rpx;
+      display: flex;
+      direction: row;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 110rpx;
+      .weui-slideview__btn__wrp {
+        text-align: center;
+        min-width:69px;
+        height: 100%;
+        white-space:nowrap;
+      }
+      .weui-slideview__btn {
+        color:#FFFFFF;
+        padding: 0 17px;
+      }
+      .weui-slideview__btn-group_warn{
+        .weui-slideview__btn {
+          background: #FE3B30;
+        }
+        &~&{
+          &:before{
+            .setLeftLine(#FFFFFF);
+          }
+        }
+        &:first-child{
+          &:before{
+            display:none;
+          }
+        }
       }
     }
   }
 </style>
 <template>
-  <view class="weui-cells__title">带图标、说明、跳转的列表项</view>
+  <view class="weui-cells__title">我关注的宝贝</view>
   <view class="weui-cells weui-cells_after-title">
-    <slide-view class="slide" width="640" height="80" slideWidth="266">
-      <view class="left" slot="left">
+    <slide-view class="weui-slideview" width="750" height="110" slide-width="200">
+      <view class="weui-slideview__left" slot="left">
         <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
           <view class="weui-cell__hd">
             <image src="{{icon}}" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
           </view>
-          <view class="weui-cell__bd">cell standard</view>
-          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+          <view class="weui-cell__bd">宝贝1</view>
         </navigator>
       </view>
-      <view class="right" slot="right">
-        <view class="right-item">删除</view>
+      <view class="weui-slideview__right" slot="right">
+        <view class="weui-slideview__btn__wrp weui-slideview__btn-group_warn">
+          <view class="weui-slideview__btn">删除</view>
+        </view>
       </view>
     </slide-view>
-    <slide-view class="slide" width="640" height="80" slideWidth="266">
-      <view class="left" slot="left">
+    <slide-view class="weui-slideview" width="750" height="110" slide-width="200">
+      <view class="weui-slideview__left" slot="left">
         <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
           <view class="weui-cell__hd">
             <image src="{{icon}}" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
           </view>
-          <view class="weui-cell__bd">cell standard</view>
-          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+          <view class="weui-cell__bd">宝贝2</view>
         </navigator>
       </view>
-      <view class="right" slot="right">
-        <view class="right-item">删除</view>
+      <view class="weui-slideview__right" slot="right">
+        <view class="weui-slideview__btn__wrp weui-slideview__btn-group_warn">
+          <view class="weui-slideview__btn">删除</view>
+        </view>
       </view>
     </slide-view>
     <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
       <view class="weui-cell__hd">
         <image src="{{icon}}" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
       </view>
-      <view class="weui-cell__bd">cell standard</view>
+      <view class="weui-cell__bd">添加宝贝</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
   </view>
@@ -83,3 +124,10 @@
     },
   });
 </script>
+<config>
+  {
+    usingComponents: {
+      "slide-view": "module:miniprogram-slide-view",
+    }
+  }
+</config>
