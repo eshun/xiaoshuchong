@@ -11,4 +11,10 @@ export default {
   'search': {
     'placeholder': '搜索',
   },
+  'me': {
+    'baby': '宝贝',
+  },
+  'operate': {
+    'remove': '删除',
+  }
 };

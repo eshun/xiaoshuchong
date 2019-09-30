@@ -1,97 +1,14 @@
 <style lang="less">
-  @import "../../../style/base/fn.less";
   @import "../../../style/widget/weui-cell/weui-cell.less";
   @import "../../../style/widget/weui-cell/weui-access.less";
 
-  .weui-slideview{
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    &:before {
-      .setTopLine(@weuiCellBorderColor);
-      left: @weuiCellGapH;
-    }
-    &:first-child {
-      &:before {
-        display: none;
-      }
-    }
-    .weui-slideview__left{
-      height: 110rpx;
-      width: 750rpx;
-      display: flex;
-      flex-direction: row;
-      .weui-cell {
-        width: 100%;
-      }
-    }
-    .weui-slideview__right{
-      height: 110rpx;
-      display: flex;
-      direction: row;
-      text-align: center;
-      vertical-align: middle;
-      line-height: 110rpx;
-      .weui-slideview__btn__wrp {
-        text-align: center;
-        min-width:69px;
-        height: 100%;
-        white-space:nowrap;
-      }
-      .weui-slideview__btn {
-        color:#FFFFFF;
-        padding: 0 17px;
-      }
-      .weui-slideview__btn-group_warn{
-        .weui-slideview__btn {
-          background: #FE3B30;
-        }
-        &~&{
-          &:before{
-            .setLeftLine(#FFFFFF);
-          }
-        }
-        &:first-child{
-          &:before{
-            display:none;
-          }
-        }
-      }
-    }
-  }
 </style>
 <template>
   <view class="weui-cells__title">我关注的宝贝</view>
   <view class="weui-cells weui-cells_after-title">
-    <slide-view class="weui-slideview" width="750" height="110" slide-width="200">
-      <view class="weui-slideview__left" slot="left">
-        <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-          <view class="weui-cell__hd">
-            <image src="{{icon}}" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
-          </view>
-          <view class="weui-cell__bd">宝贝1</view>
-        </navigator>
-      </view>
-      <view class="weui-slideview__right" slot="right">
-        <view class="weui-slideview__btn__wrp weui-slideview__btn-group_warn">
-          <view class="weui-slideview__btn">删除</view>
-        </view>
-      </view>
+    <slide-view title="宝贝1" @remove="remove">
     </slide-view>
-    <slide-view class="weui-slideview" width="750" height="110" slide-width="200">
-      <view class="weui-slideview__left" slot="left">
-        <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-          <view class="weui-cell__hd">
-            <image src="{{icon}}" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
-          </view>
-          <view class="weui-cell__bd">宝贝2</view>
-        </navigator>
-      </view>
-      <view class="weui-slideview__right" slot="right">
-        <view class="weui-slideview__btn__wrp weui-slideview__btn-group_warn">
-          <view class="weui-slideview__btn">删除</view>
-        </view>
-      </view>
+    <slide-view title="宝贝2" @remove="remove">
     </slide-view>
     <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
       <view class="weui-cell__hd">
@@ -104,7 +21,6 @@
 </template>
 <script>
   import wepy from '@wepy/core';
-  import { icon20 } from '../../../images/base64';
 
   wepy.component({
     props: {
@@ -112,7 +28,7 @@
     },
 
     data: {
-      icon: icon20,
+
     },
 
     computed: {
@@ -120,14 +36,16 @@
     },
 
     methods: {
-
+      remove(key) {
+        console.log('remove',key);
+      }
     },
   });
 </script>
 <config>
   {
     usingComponents: {
-      "slide-view": "module:miniprogram-slide-view",
+      "slide-view": "../../../components/slideview",
     }
   }
 </config>
