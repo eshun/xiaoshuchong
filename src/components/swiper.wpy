@@ -12,17 +12,17 @@
   }
 </style>
 <template>
-  <swiper class="swiper" style="height:{{ style_height }}" autoplay="{{autoplay}}"
+  <swiper class="swiper" style="{{style}}" autoplay="{{autoplay}}"
           indicator-dots="{{indicatorDots}}"
           indicator-color="{{indicatorColor}}"
           indicator-active-color="{{indicatorActiveColor}}">
     <block wx:for="{{list}}" wx:key="index">
       <swiper-item>
         <navigator wx:if="{{item.url}}" url="{{item.url}}">
-          <image src="{{item.image}}" style="height:{{style_height}}" class="swiper-image" mode="widthFix"/>
+          <image src="{{item.image}}" style="{{style}}" class="swiper-image" mode="widthFix"/>
         </navigator>
-        <view wx:else style="height:{{style_height}}">
-          <image src="{{item.image}}" style="height:{{style_height}}" class="swiper-image" mode="aspectFit"/>
+        <view wx:else style="{{style}}">
+          <image src="{{item.image}}" style="{{style}}" class="swiper-image" mode="aspectFit"/>
         </view>
       </swiper-item>
     </block>
@@ -39,6 +39,7 @@
       },
       height: {
         type: [String, Number],
+        default: 240
       },
       dots: {
         type: Boolean,
@@ -56,15 +57,16 @@
       indicatorDots() {
         return this.list.length > 1 && this.dots;
       },
-      style_height() {
-        const h = this.height;
+      style() {
+        let h = this.height;
         if (typeof h === 'number' || /^[\d|\\.]*$/.test(h)) {
-          return `${h}rpx`;
-        } else if (typeof h === 'string' && /\d+(r?px|em)$/.test(h)) {
-          return h;
+          h = `${h}rpx`;
+        } else if (typeof h === 'string' && !/\d+(r?px|em)$/.test(h)) {
+          h = `${h}rpx`;
         } else {
-          return '240rpx';
+          h = '240rpx';
         }
+        return `height:${h}`;
       }
     },
   });

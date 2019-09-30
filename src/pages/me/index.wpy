@@ -48,15 +48,15 @@
       </view>
     </view>
     <view class="weui-panel">
-
+      <baby></baby>
     </view>
   </view>
 </template>
 <script>
   import wepy from '@wepy/core';
   import { mapState, mapActions } from '@wepy/x';
-  import store from '../store';
-  import utils from '../utils/index';
+  import store from '../../store';
+  import utils from '../../utils/index';
 
   wepy.page({
     store,
@@ -113,6 +113,8 @@
 <config>
   {
     navigationBarTitleText: '我的',
-
+    usingComponents: {
+      baby: './components/baby',
+    }
   }
 </config>

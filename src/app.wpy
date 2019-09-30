@@ -1,16 +1,20 @@
 <style lang="less">
 @import './style/weui.less';
+
 page{
   background-color: #F8F8F8;
   font-size: 16px;
   font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
 }
+
 .page__hd {
   padding: 40px;
 }
+
 .page__bd {
   padding-bottom: 40px;
 }
+
 .page__bd_spacing {
   padding-left: 15px;
   padding-right: 15px;
@@ -34,7 +38,6 @@ page{
   font-size: 14px;
 }
 </style>
-
 <script>
 import wepy from '@wepy/core';
 import vuex from '@wepy/x';
@@ -58,7 +61,7 @@ wepy.app({
 
     }
     utils.checkLogin().then(data => {
-      //vuex.mapActions.
+
     }).catch(() => {
       // this.$nextTick().then(function () {
       //   setTimeout(() => {
@@ -75,7 +78,7 @@ wepy.app({
 {
   pages: [
     'pages/index',
-    'pages/user',
+    'pages/me/index',
     'pages/authorize/index'
   ],
   window: {
@@ -110,7 +113,7 @@ wepy.app({
         text: '发现'
       },
       {
-        pagePath: 'pages/user',
+        pagePath: 'pages/me/index',
         iconPath:'./images/pic_160.png',
         selectedIconPath:'./images/pic_160.png',
         text: '我'

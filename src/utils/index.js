@@ -28,7 +28,6 @@ function getAppId() {
     const accountInfo = wx.getAccountInfoSync();
     return accountInfo.miniProgram.appId;
   } catch (e) {
-
   }
   return '';
 }
