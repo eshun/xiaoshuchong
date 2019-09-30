@@ -1,13 +1,21 @@
 <style lang="less">
-  @imgHeight: 100rpx;
+  @imgHeight: 80rpx;
 
   .weui-cells {
-    width: 1700rpx;
-    height: 180rpx;
-    display: inline-block;
+    width: 100%;
+    height: 90px;
+    margin-top: 0px;
+    white-space: nowrap;
 
+    &:before {
+      display: none;
+    }
+
+    &::after {
+      display: none;
+    }
     .class-cell {
-      float: left;
+      display: inline-block;
 
       &:before {
         display: none;
@@ -22,7 +30,7 @@
       .class-cell-info {
         .class-cell-title {
           text-align: center;
-          font-size: 14px;
+          font-size: 12px;
         }
       }
     }
@@ -80,7 +88,7 @@
             </view>
           </view>
         </view>
-      </view>
+      </scroll-view>
     </view>
   </view>
 </template>
