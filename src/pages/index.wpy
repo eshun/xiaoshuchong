@@ -6,7 +6,7 @@
   <view class="page">
     <searchbar></searchbar>
     <swiper :list.sync="swipers" height="280"></swiper>
-
+    <wepy-list :list.sync="list"></wepy-list>
   </view>
 </template>
 
@@ -18,8 +18,30 @@
     data: {
       swipers: [
         // 占位图，防止请求错误无图显示
-        {image: '../images/swiper.png'}
+        { image: '../images/swiper.png' }
       ],
+      list: [
+        {
+          id: '1',
+          title: '测试1',
+          image: '../images/swiper.png',
+        },
+        {
+          id: '2',
+          title: '测试2',
+          image: '../images/swiper.png',
+        },
+        {
+          id: '3',
+          title: '测试3',
+          image: '../images/swiper.png',
+        },
+        {
+          id: '4',
+          title: '测试4',
+          image: '../images/swiper.png',
+        },
+      ]
     },
 
     computed: {},
@@ -34,6 +56,7 @@
     usingComponents: {
       searchbar: '../components/searchbar',
       swiper: '../components/swiper',
+      'wepy-list': '../components/wepylist',
     }
   }
 </config>
